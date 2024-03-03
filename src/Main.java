@@ -7,7 +7,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         StringBuilder sb = new StringBuilder();
-//        File scr = new File("/")
         List<File> folders = Arrays.asList(
                 new File("/Users/a0000/Documents/Games"),
                 new File("/Users/a0000/Documents/Games/scr"),
@@ -27,22 +26,22 @@ public class Main {
         folders.stream()
                 .forEach(folder -> {
                     if (folder.mkdir()) {
-                        sb.append("каталог " + folder + " создан");
+                        sb.append("каталог " + folder + " создан\n");
                     } else {
-                        sb.append("каталог " + folder + " НЕ создан");
+                        sb.append("каталог " + folder + " НЕ создан\n");
                     }
                 });
         files.stream()
                 .forEach(file -> {
                     try {
                         if (file.createNewFile()) {
-                            sb.append("файл " + file + " создан");
+                            sb.append("файл " + file + " создан\n");
                         } else {
-                            sb.append("файл " + file + " НЕ создан");
+                            sb.append("файл " + file + " НЕ создан\n");
                         }
 
                     } catch (IOException e) {
-                        sb.append(e.getMessage());
+                        sb.append(e.getMessage() + '\n');
                     }
                 });
         try (FileWriter log = new FileWriter("/Users/a0000/Documents/Games/temp/temp.txt",
@@ -50,7 +49,7 @@ public class Main {
             log.write(sb.toString());
             log.flush();
         } catch (IOException e) {
-            sb.append(e.getMessage());
+            sb.append(e.getMessage() + '\n');
         }
         try (BufferedReader buff = new BufferedReader
                 (new FileReader("/Users/a0000/Documents/Games/temp/temp.txt"))) {
@@ -59,7 +58,7 @@ public class Main {
                 System.out.println(s);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + '\n');
         }
 
 
